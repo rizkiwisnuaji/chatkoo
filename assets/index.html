@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<HTML>
+
+<HEAD>
+    <title>CBN Real Time Chat</title>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/styles/style.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,600' rel='stylesheet' type='text/css'>
+</HEAD>
+
+<BODY ng-app="socketApp" ng-controller="ChatController">
+    
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">CBN</a>
+        </div>
+        <div class="navbar-collapse collapse navbar-responsive-collapse"></div>
+    </div>
+    <div class="col-md-12" style="padding:100px">
+        <table class="table">
+            <tr class="chat_message" ng-repeat="chat in chatList | orderBy:predicate:reverse | limitTo: 15">
+                <td class="col-md-12 td_class">
+                    <strong>{{ chat.user }} :</strong> {{ chat.message }}
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="navbar navbar-inverse navbar-fixed-bottom">
+        <div class="col-lg-12">
+            <form class="form-inline form_chat" role="form">
+                <div class="col-lg-2 col-md-12 col-xs-12">
+                    <input type="text" style="width: 100%;" ng-model="chatUser" class="form-control" id="name" placeholder="Enter name">
+                </div>
+                <div class="col-lg-8 col-md-12 col-xs-12">
+                    <input type="text" style="width: 100%;" ng-model="chatMessage" class="form-control" id="message" placeholder="Enter Message">
+                </div>
+                <div class="col-lg-1 col-md-12 col-xs-12">
+                    <button type="submit" style="width: 100%;" ng-click="sendMsg()" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script type="text/javascript" src="/js/dependencies/sails.io.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.27/angular.min.js"></script>
+    <script type="text/javascript" src="/js/app.js"></script>
+
+</BODY>
+
+</HTML>
